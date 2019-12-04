@@ -1,3 +1,11 @@
+# Machine Learning Final
+
+> Beep boop
+
+This is a final project for designing with machine learning (fall 2019).
+
+### React Stuff
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
