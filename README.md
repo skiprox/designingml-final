@@ -1,6 +1,6 @@
 # Machine Learning Final
 
-> Beep boop
+> Final project for designing with machine learning
 
 This is a final project for designing with machine learning (fall 2019).
 
