@@ -5,6 +5,8 @@ import Overlay from './components/Overlay/Overlay';
 import * as PIXI from 'pixi.js';
 import { Viewport } from 'pixi-viewport';
 
+import { TweenMax } from 'gsap';
+
 import positions from './image_umap_positions';
 
 import './App.scss';
@@ -70,6 +72,10 @@ function App() {
 				imageSprite.anchor.x = 0.5;
 				imageSprite.anchor.y = 0.5;
 
+				console.log(imageSprite);
+				imageSprite.transform.scale.x = 0.5;
+				imageSprite.transform.scale.y = 0.5;
+
 				imageSprite.interactive = true;
 
 				const name = key;
@@ -78,13 +84,15 @@ function App() {
 				});
 
 				imageSprite.on('mouseover', () => {
-					imageSprite.height = imageSprite.height * 2;
-					imageSprite.width = imageSprite.width * 2;
+					TweenMax.to(imageSprite.scale, 0.3, {x:1, y:1});
+					// imageSprite.height = imageSprite.height * 2;
+					// imageSprite.width = imageSprite.width * 2;
 				});
 
 				imageSprite.on('mouseout', () => {
-					imageSprite.height = imageSprite.height * .5;
-					imageSprite.width = imageSprite.width * .5;
+					TweenMax.to(imageSprite.scale, 0.3, {x:0.5, y:0.5});
+					// imageSprite.height = imageSprite.height * .5;
+					// imageSprite.width = imageSprite.width * .5;
 				});
 
 				viewport.addChild(imageSprite);
