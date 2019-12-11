@@ -1,19 +1,72 @@
 import React from 'react';
 import './Overlay.scss';
+import Swiper from 'react-id-swiper';
 
 const Overlay = (props) => {
 	console.log(props);
 	let filename = props.details.filename.replace(/\//g, '_');
 	const setOverlay = props.setOverlay;
+	const params = {
+		pagination: {
+			el: '.swiper-pagination',
+			type: 'bullets',
+			clickable: true
+		},
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev'
+		},
+		spaceBetween: 30
+	};
 	return (
-		<div className="overlay">
-			<button
-				onClick={() => {
-					setOverlay(null);
-				}}
-			>Close this please</button>
-			<h1>{props.details.filename}</h1>
-			<img src={'resized/' + filename}></img>
+		<div className="overlay-container">
+			<div className="overlay">
+				<a href="#"
+					onClick={(e) => {
+						e.preventDefault();
+						setOverlay(null);
+					}}
+				>Close this please</a>
+				<h1>{props.details.filename}</h1>
+				<Swiper {...params}>
+					<div>
+						<div class="inner">
+							<img class="gallery-img" src={props.details.filename}></img>
+							<span class="similarity">1.0</span>
+						</div>
+					</div>
+					<div>
+						<div class="inner">
+							<img class="gallery-img" src={props.details.closest_imgs[0][1]}></img>
+							<span class="similarity">{props.details.closest_imgs[0][0]}</span>
+						</div>
+					</div>
+					<div>
+						<div class="inner">
+							<img class="gallery-img" src={props.details.closest_imgs[1][1]}></img>
+							<span class="similarity">{props.details.closest_imgs[1][0]}</span>
+						</div>
+					</div>
+					<div>
+						<div class="inner">
+							<img class="gallery-img" src={props.details.closest_imgs[2][1]}></img>
+							<span class="similarity">{props.details.closest_imgs[2][0]}</span>
+						</div>
+					</div>
+					<div>
+						<div class="inner">
+							<img class="gallery-img" src={props.details.closest_imgs[3][1]}></img>
+							<span class="similarity">{props.details.closest_imgs[3][0]}</span>
+						</div>
+					</div>
+					<div>
+						<div class="inner">
+							<img class="gallery-img" src={props.details.closest_imgs[4][1]}></img>
+							<span class="similarity">{props.details.closest_imgs[4][0]}</span>
+						</div>
+					</div>
+				</Swiper>
+			</div>
 		</div>
 	);
 }
