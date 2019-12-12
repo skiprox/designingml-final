@@ -2,7 +2,7 @@ import React, { useState , useRef, useEffect } from 'react';
 import Overlay from './components/Overlay/Overlay';
 import * as PIXI from 'pixi.js';
 import { Viewport } from 'pixi-viewport';
-import { TweenMax } from 'gsap';
+import { TweenMax } from 'gsap/dist/gsap';
 import positions from './image_umap_positions';
 import './App.scss';
 

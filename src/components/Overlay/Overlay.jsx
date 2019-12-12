@@ -1,7 +1,7 @@
 import React from 'react';
 import './Overlay.scss';
 import Swiper from 'react-id-swiper';
-import { TweenMax } from 'gsap';
+import { TweenMax } from 'gsap/dist/gsap';
 
 const Overlay = (props) => {
 	const setOverlay = props.setOverlay;
