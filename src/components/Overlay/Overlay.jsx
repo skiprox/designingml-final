@@ -1,10 +1,52 @@
 import React from 'react';
 import './Overlay.scss';
 import Swiper from 'react-id-swiper';
+import { TweenMax } from 'gsap';
 
 const Overlay = (props) => {
-	console.log(props);
 	const setOverlay = props.setOverlay;
+	let overlayContainer, overlay;
+	const closeAnimation = () => {
+		TweenMax.to(overlay, 0.3, {
+			y: -900,
+			onComplete: function() {
+				TweenMax.to(overlayContainer, 0.3, {
+					opacity: 0,
+					onComplete: function() {
+						setOverlay(null);
+					}
+				});
+			}
+		});
+	}
+	const openAnimation = () => {
+		TweenMax.set(overlayContainer, {opacity: 0});
+		TweenMax.set(overlay, {y: 900});
+		TweenMax.to(overlayContainer, 0.3, {
+			opacity: 1,
+			onComplete: function() {
+				TweenMax.to(overlay, 0.3, {
+					y: 0
+				});
+			}
+		});
+	}
+	setTimeout(() => {
+		overlayContainer = document.querySelector('.overlay-container');
+		overlay = document.querySelector('.overlay');
+		openAnimation();
+		// Close event listener
+		document.querySelector('.close').addEventListener('click', (e) => {
+			e.preventDefault();
+			closeAnimation();
+		});
+		// Clicking anywhere event listener
+		overlayContainer.addEventListener('click', (e) => {
+			if (e.target.classList.contains('overlay-container')) {
+				closeAnimation();
+			}
+		});
+	}, 10);
 	const params = {
 		pagination: {
 			el: '.swiper-pagination',
@@ -20,12 +62,7 @@ const Overlay = (props) => {
 	return (
 		<div className="overlay-container">
 			<div className="overlay">
-				<a href="#" className="close"
-					onClick={(e) => {
-						e.preventDefault();
-						setOverlay(null);
-					}}
-				>X</a>
+				<a href="#" className="close">X</a>
 				<h1>{props.details.filename}</h1>
 				<Swiper {...params}>
 					<div>

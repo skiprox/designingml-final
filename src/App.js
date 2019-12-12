@@ -1,14 +1,9 @@
 import React, { useState , useRef, useEffect } from 'react';
-
 import Overlay from './components/Overlay/Overlay';
-
 import * as PIXI from 'pixi.js';
 import { Viewport } from 'pixi-viewport';
-
 import { TweenMax } from 'gsap';
-
 import positions from './image_umap_positions';
-
 import './App.scss';
 
 //let positions;
@@ -19,7 +14,6 @@ function App() {
 
 	// Load all our images into the canvas!
 	useEffect(() => {
-		console.log(positions);
 		const app = new PIXI.Application({
 			width: window.innerWidth,
 			height: window.innerHeight,
@@ -66,13 +60,11 @@ function App() {
 
 				const clusterPos = positionDict[key].cluster_pos;
 
-				imageSprite.x = app.renderer.width * (clusterPos[0] * 2 - 1);
-				imageSprite.y = app.renderer.width * (clusterPos[1] * 2 - 1);
+				imageSprite.x = positions.length/50 * app.renderer.width * (clusterPos[0] * 2 - 1);
+				imageSprite.y = positions.length/50 * app.renderer.width * (clusterPos[1] * 2 - 1);
 
 				imageSprite.anchor.x = 0.5;
 				imageSprite.anchor.y = 0.5;
-
-				console.log(imageSprite);
 				imageSprite.transform.scale.x = 0.5;
 				imageSprite.transform.scale.y = 0.5;
 
@@ -85,14 +77,10 @@ function App() {
 
 				imageSprite.on('mouseover', () => {
 					TweenMax.to(imageSprite.scale, 0.3, {x:1, y:1});
-					// imageSprite.height = imageSprite.height * 2;
-					// imageSprite.width = imageSprite.width * 2;
 				});
 
 				imageSprite.on('mouseout', () => {
 					TweenMax.to(imageSprite.scale, 0.3, {x:0.5, y:0.5});
-					// imageSprite.height = imageSprite.height * .5;
-					// imageSprite.width = imageSprite.width * .5;
 				});
 
 				viewport.addChild(imageSprite);
