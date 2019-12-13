@@ -8,8 +8,6 @@ import './App.scss';
 let app;
 let isLight = true;
 
-//let positions;
-
 function App() {
 	const canvas = useRef(null);
 	const [overlay, setOverlay, isLightMode] = useState(null);
