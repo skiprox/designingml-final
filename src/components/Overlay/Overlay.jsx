@@ -4,7 +4,6 @@ import Swiper from 'react-id-swiper';
 import { TweenMax } from 'gsap/dist/gsap';
 
 const Overlay = (props) => {
-	console.log(props);
 	const setOverlay = props.setOverlay;
 	let overlayContainer, overlay, similarities, tooltip;
 	const closeAnimation = () => {

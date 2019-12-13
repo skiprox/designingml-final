@@ -32,7 +32,6 @@ function App() {
 	}
 
 	const darkModeIntro = (target) => {
-		console.log('what the fuck');
 		let darkOverlay = document.querySelector('.dark-mode-overlay');
 		let darkText = document.querySelector('.dark-mode-overlay h1');
 		darkOverlay.style.display = 'block';
