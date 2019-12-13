@@ -9,6 +9,7 @@ import './App.scss';
 //let positions;
 
 function App() {
+	let app;
 	const canvas = useRef(null);
 	let isLight = true;
 	const [overlay, setOverlay] = useState(null);
@@ -22,11 +23,12 @@ function App() {
 		e.preventDefault();
 		isLight = !isLight;
 		e.target.innerText = isLight ? '😈' : '😇';
-		setupPage();
+		app.renderer.backgroundColor = isLight ? 0xf8f8f8 : 0x111111;
+		//setupPage();
 	}
 
 	const setupPage = () => {
-		const app = new PIXI.Application({
+		app = new PIXI.Application({
 			width: window.innerWidth,
 			height: window.innerHeight,
 			view: canvas.current
