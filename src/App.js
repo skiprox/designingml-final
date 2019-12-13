@@ -56,7 +56,7 @@ function App() {
 					rotation: 0,
 					onComplete: function() {
 						TweenMax.to(darkText, 1.4, {
-							delay: 2,
+							delay: 3,
 							x: 200,
 							y: 1400,
 							scaleX: 1.8,
@@ -155,7 +155,7 @@ function App() {
 		<div className="app">
 			<a className="switch" onClick={switchClick} href="#">😈</a>
 			<div className="dark-mode-overlay">
-				<h1>hope youre not scared...</h1>
+				<h1>entering dark mode. hope youre not scared...</h1>
 			</div>
 			<canvas ref={canvas} />
 			{overlay && <Overlay details={overlay} setOverlay={setOverlay} isLightMode={isLight} />}
