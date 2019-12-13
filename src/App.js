@@ -116,6 +116,8 @@ function App() {
 			.wheel()
 			.decelerate()
 
+		viewport.setZoom(0.1, true);
+
 
 		app.loader.load((loader, resources) => {
 			for(let key in resources) {
