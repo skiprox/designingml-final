@@ -5,7 +5,7 @@ import { TweenMax } from 'gsap/dist/gsap';
 
 const Overlay = (props) => {
 	const setOverlay = props.setOverlay;
-	let overlayContainer, overlay;
+	let overlayContainer, overlay, similarities, tooltip;
 	const closeAnimation = () => {
 		TweenMax.to(overlay, 0.3, {
 			y: -900,
@@ -31,9 +31,26 @@ const Overlay = (props) => {
 			}
 		});
 	}
+	const openTooltip = () => {
+		console.log('we open');
+		tooltip.style.visibility = 'visible';
+		TweenMax.to(tooltip, 0.3, {
+			opacity: 1
+		});
+	}
+	const closeTooltip = () => {
+		TweenMax.to(tooltip, 0.3, {
+			opacity: 0,
+			onComplete: function() {
+				tooltip.style.visibility = 'hidden';
+			}
+		})
+	}
 	setTimeout(() => {
 		overlayContainer = document.querySelector('.overlay-container');
 		overlay = document.querySelector('.overlay');
+		similarities = [].slice.call(document.querySelectorAll('.similarity'));
+		tooltip = document.querySelector('.tooltip');
 		openAnimation();
 		// Close event listener
 		document.querySelector('.close').addEventListener('click', (e) => {
@@ -45,6 +62,15 @@ const Overlay = (props) => {
 			if (e.target.classList.contains('overlay-container')) {
 				closeAnimation();
 			}
+		});
+		// Hovering over any similarity item
+		similarities.forEach((elem) => {
+			elem.addEventListener('mouseover', (e) => {
+				openTooltip();
+			});
+			elem.addEventListener('mouseout', (e) => {
+				closeTooltip();
+			});
 		});
 	}, 10);
 	const params = {
@@ -62,6 +88,9 @@ const Overlay = (props) => {
 	return (
 		<div className="overlay-container">
 			<div className="overlay">
+				<div className="similarity-hint tooltip">
+					<p>This is an indicator of how similar the image is to the original. 1.0 means a perfect match, -1.0 means a complete mismatch.</p>
+				</div>
 				<a href="#" className="close">X</a>
 				<h1>{props.details.filename}</h1>
 				<Swiper {...params}>

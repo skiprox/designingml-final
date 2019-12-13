@@ -10,10 +10,22 @@ import './App.scss';
 
 function App() {
 	const canvas = useRef(null);
+	let isLight = true;
 	const [overlay, setOverlay] = useState(null);
 
 	// Load all our images into the canvas!
 	useEffect(() => {
+		setupPage();
+	}, []);
+
+	const switchClick = (e) => {
+		e.preventDefault();
+		isLight = !isLight;
+		e.target.innerText = isLight ? '😈' : '😇';
+		setupPage();
+	}
+
+	const setupPage = () => {
 		const app = new PIXI.Application({
 			width: window.innerWidth,
 			height: window.innerHeight,
@@ -41,7 +53,7 @@ function App() {
 		});
 
 		// Set the background color
-		app.renderer.backgroundColor = 0xf8f8f8;
+		app.renderer.backgroundColor = isLight ? 0xf8f8f8 : 0x111111;
 
 		// add the viewport to the stage
 		app.stage.addChild(viewport);
@@ -86,9 +98,10 @@ function App() {
 				viewport.addChild(imageSprite);
 			}
 		});
-	}, []);
+	}
 	return (
 		<div className="app">
+			<a className="switch" onClick={switchClick} href="#">😈</a>
 			<canvas ref={canvas} />
 			{overlay && <Overlay details={overlay} setOverlay={setOverlay} />}
 		</div>

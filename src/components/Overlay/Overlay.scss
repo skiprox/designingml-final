@@ -16,6 +16,25 @@
 	transform: translate(-50%, -50%);
 	background-color: white;
 	color: #222;
+	border: 1px solid black;
+	box-shadow: 1px 1px 2px black;
+	.similarity-hint {
+		position: absolute;
+		bottom: 20px;
+		right: 0px;
+		width: 240px;
+		height: 110px;
+		background-color: white;
+		border: 1px solid black;
+		box-shadow: 1px 1px 2px black;
+		z-index: 100;
+		visibility: hidden;
+		opacity: 0;
+		p {
+			margin: 0;
+			padding: 10px;
+		}
+	}
 	h1 {
 		padding: 0 20px;
 		display: block;
