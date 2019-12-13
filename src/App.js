@@ -5,14 +5,14 @@ import { Viewport } from 'pixi-viewport';
 import { TweenMax } from 'gsap/dist/gsap';
 import positions from './image_umap_positions';
 import './App.scss';
+let app;
+let isLight = true;
 
 //let positions;
 
 function App() {
-	let app;
 	const canvas = useRef(null);
-	let isLight = true;
-	const [overlay, setOverlay] = useState(null);
+	const [overlay, setOverlay, isLightMode] = useState(null);
 
 	// Load all our images into the canvas!
 	useEffect(() => {
@@ -22,9 +22,59 @@ function App() {
 	const switchClick = (e) => {
 		e.preventDefault();
 		isLight = !isLight;
-		e.target.innerText = isLight ? '😈' : '😇';
-		app.renderer.backgroundColor = isLight ? 0xf8f8f8 : 0x111111;
+		if (!isLight) {
+			darkModeIntro(e.target);
+		} else {
+			e.target.innerText = isLight ? '😈' : '😇';
+			app.renderer.backgroundColor = isLight ? 0xf8f8f8 : 0x111111;
+		}
 		//setupPage();
+	}
+
+	const darkModeIntro = (target) => {
+		console.log('what the fuck');
+		let darkOverlay = document.querySelector('.dark-mode-overlay');
+		let darkText = document.querySelector('.dark-mode-overlay h1');
+		darkOverlay.style.display = 'block';
+		TweenMax.set(darkText, {
+			x: -200,
+			y: -1400,
+			scaleX: 0.2,
+			scaleY: 0.2,
+			rotation: -70
+		});
+		TweenMax.to(darkOverlay, 0.3, {
+			opacity: 1,
+			onComplete: function() {
+				target.innerText = isLight ? '😈' : '😇';
+				app.renderer.backgroundColor = isLight ? 0xf8f8f8 : 0x111111;
+				TweenMax.to(darkText, 1.4, {
+					x: 0,
+					y: 0,
+					scaleX: 1,
+					scaleY: 1,
+					rotation: 0,
+					onComplete: function() {
+						TweenMax.to(darkText, 1.4, {
+							delay: 2,
+							x: 200,
+							y: 1400,
+							scaleX: 1.8,
+							scaleY: 1.8,
+							rotation: 70,
+							onComplete: function() {
+								TweenMax.to(darkOverlay, 0.3, {
+									opacity: 0,
+									onComplete: function() {
+										darkOverlay.style.display = 'none';
+									}
+								})
+							}
+						})
+					}
+				});
+			}
+		});
 	}
 
 	const setupPage = () => {
@@ -104,8 +154,11 @@ function App() {
 	return (
 		<div className="app">
 			<a className="switch" onClick={switchClick} href="#">😈</a>
+			<div className="dark-mode-overlay">
+				<h1>hope youre not scared...</h1>
+			</div>
 			<canvas ref={canvas} />
-			{overlay && <Overlay details={overlay} setOverlay={setOverlay} />}
+			{overlay && <Overlay details={overlay} setOverlay={setOverlay} isLightMode={isLight} />}
 		</div>
 	);
 }

@@ -4,6 +4,7 @@ import Swiper from 'react-id-swiper';
 import { TweenMax } from 'gsap/dist/gsap';
 
 const Overlay = (props) => {
+	console.log(props);
 	const setOverlay = props.setOverlay;
 	let overlayContainer, overlay, similarities, tooltip;
 	const closeAnimation = () => {
@@ -91,7 +92,7 @@ const Overlay = (props) => {
 				<div className="similarity-hint tooltip">
 					<p>This is an indicator of how similar the image is to the original. 1.0 means a perfect match, -1.0 means a complete mismatch.</p>
 				</div>
-				<a href="#" className="close">X</a>
+				<a href="#" className="close">×</a>
 				<h1>{props.details.filename}</h1>
 				<Swiper {...params}>
 					<div>
@@ -102,32 +103,52 @@ const Overlay = (props) => {
 					</div>
 					<div>
 						<div className="inner">
-							<img className="gallery-img" src={props.details.closest_imgs[0][1]} alt=""></img>
-							<span className="similarity">{props.details.closest_imgs[0][0]}</span>
+							<img className="gallery-img" src={
+								props.isLightMode ? props.details.closest_imgs[0][1] : props.details.furthest_imgs[0][1]
+							} alt=""></img>
+							<span className="similarity">{
+								props.isLightMode ? props.details.closest_imgs[0][0] : props.details.furthest_imgs[0][0]
+							}</span>
 						</div>
 					</div>
 					<div>
 						<div className="inner">
-							<img className="gallery-img" src={props.details.closest_imgs[1][1]} alt=""></img>
-							<span className="similarity">{props.details.closest_imgs[1][0]}</span>
+							<img className="gallery-img" src={
+								props.isLightMode ? props.details.closest_imgs[1][1] : props.details.furthest_imgs[1][1]
+							} alt=""></img>
+							<span className="similarity">{
+								props.isLightMode ? props.details.closest_imgs[1][0] : props.details.furthest_imgs[1][0]
+							}</span>
 						</div>
 					</div>
 					<div>
 						<div className="inner">
-							<img className="gallery-img" src={props.details.closest_imgs[2][1]} alt=""></img>
-							<span className="similarity">{props.details.closest_imgs[2][0]}</span>
+							<img className="gallery-img" src={
+								props.isLightMode ? props.details.closest_imgs[2][1] : props.details.furthest_imgs[2][1]
+							} alt=""></img>
+							<span className="similarity">{
+								props.isLightMode ? props.details.closest_imgs[2][0] : props.details.furthest_imgs[2][0]
+							}</span>
 						</div>
 					</div>
 					<div>
 						<div className="inner">
-							<img className="gallery-img" src={props.details.closest_imgs[3][1]} alt=""></img>
-							<span className="similarity">{props.details.closest_imgs[3][0]}</span>
+							<img className="gallery-img" src={
+								props.isLightMode ? props.details.closest_imgs[3][1] : props.details.furthest_imgs[3][1]
+							} alt=""></img>
+							<span className="similarity">{
+								props.isLightMode ? props.details.closest_imgs[3][0] : props.details.furthest_imgs[3][0]
+							}</span>
 						</div>
 					</div>
 					<div>
 						<div className="inner">
-							<img className="gallery-img" src={props.details.closest_imgs[4][1]} alt=""></img>
-							<span className="similarity">{props.details.closest_imgs[4][0]}</span>
+							<img className="gallery-img" src={
+								props.isLightMode ? props.details.closest_imgs[4][1] : props.details.furthest_imgs[4][1]
+							} alt=""></img>
+							<span className="similarity">{
+								props.isLightMode ? props.details.closest_imgs[4][0] : props.details.furthest_imgs[4][0]
+							}</span>
 						</div>
 					</div>
 				</Swiper>

@@ -10,7 +10,7 @@
 .overlay {
 	position: fixed;
 	width: 600px;
-	height: 600px;
+	min-height: 600px;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
@@ -38,17 +38,19 @@
 	h1 {
 		padding: 0 20px;
 		display: block;
-		height: 76px;
+		min-height: 76px;
 		margin-top: 40px;
+		font-weight: bold;
 	}
 	.close {
 		height: 18px;
 		position: absolute;
-		top: 10px;
+		top: 0;
 		right: 10px;
 		text-decoration: none;
 		color: black;
 		font-weight: bold;
+		font-size: 2em;
 	}
 	.swiper-slide {
 		height: 464px;

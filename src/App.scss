@@ -29,3 +29,27 @@
   font-size: 2em;
   text-decoration: none;
 }
+
+.dark-mode-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #111;
+  z-index: 101;
+  display: none;
+  opacity: 0;
+  text-align: center;
+  h1 {
+    font-family: 'Creepster', cursive;
+    font-size: 120px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #e61751;
+  }
+}
