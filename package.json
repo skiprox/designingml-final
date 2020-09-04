@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "gsap": "^3.0.2",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "pixi-viewport": "^4.4.1",
     "pixi.js": "^5.2.0",
     "react": "^16.12.0",
